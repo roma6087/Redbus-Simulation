@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redbus simulation</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+       
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f8f8f8;
+        padding: 15px 5%;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .logo h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+    }
+
+    .links a {
+        text-decoration: none;
+        color: #333;
+        margin: 0 15px;
+        font-size: 16px;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .links a:hover {
+        color: red;
+    }
+
+    .auth-buttons button {
+        background-color: #ff4d4d;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        margin-left: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 14px;
+    }
+
+    .auth-buttons button:hover {
+        background-color: #cc0000;
+    }
+
+    #logout-btn {
+        background-color: #555;
+    }
+
+    #logout-btn:hover {
+        background-color: #333;
+    }
+    .tickets-section {
+        background-color: #f9f9f9;
+        padding: 30px;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 500px;
+        margin: 30px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+
+    input:focus, select:focus {
+        border-color: #ff4d4d;
+    }
+
+ 
+
+    #ticket-details {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #333;
+    }
+
+  
+    </style>
+</head>
+<body>
+   
+
+
+    <nav class="navbar">
+        <div class="logo">
+            <h1><span style="color: red;">Red</span>bus</h1>
+        </div>
+    
+        <div class="links">
+            <a href="#">HOME</a>
+            <a href="tickets.html">TICKETS</a>
+            <a href="#">CONTACT</a>
+            <a href="#">SERVICES</a>
+        </div>
+    
+        <div class="auth-buttons">
+            {% if request.user.is_authenticated %}
+
+            <button ><a href="{% url 'logout' %}" style="text-decoration: none;color: white;">Logout</a></button>
+            {% else %}
+            <button ><a href="{% url 'login' %}" style="text-decoration: none;color: white;">Login</a></button>
+            <button ><a href="{% url 'signup' %}" style="text-decoration: none;color: white;">Signup</a></button>
+            {% endif %}
+          
+        </div>
+    </nav>
+    <section>
+        <div class="content">
+            <h1>Welcome</h1>
+            <h2>To <span><span style="color: red;">Red</span>bus</span></h2>
+            <p>Redbus Sewa is a service offered by the Ministry of Road Transport & Highways that allows
+                <br> you to perform various vehicle-related tasks online. You can use Redbus</p>
+             <div class="main-btn"><button>BUY YOUR TICKET</button></div>
+        </div>
+    </section>
+
+    <!-- -----------Tickets------------- -->
+    <section class="tickets-section">
+        <h1>Book Your Tickets</h1>
+        <form action="" id="ticket-form">
+            <div class="form-group">
+                <label for="from-city">From City:</label>
+                <input type="text" id="from-city" name="from-city" placeholder="Enter departure city" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="to-city">To City:</label>
+                <input type="text" id="to-city" name="to-city" placeholder="Enter destination city" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="journey-date">Journey Date:</label>
+                <input type="date" id="journey-date" name="journey-date" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="bus-type">Bus Type:</label>
+                <select name="bus-type" id="bus-type" required>
+                    <option value="" disabled selected>Select Bus Type</option>
+                    <option value="AC Sleeper">AC Sleeper</option>
+                    <option value="Non-AC Seater">Non-AC Seater</option>
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label for="seat-number">Seat Number:</label>
+                <input type="number" id="seat-number" name="seat-number" min="1" placeholder="Enter seat number" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="bus-time">Bus Time:</label>
+                <input type="time" id="bus-time" name="bus-time" required>
+            </div>
+    
+            <button type="submit">Book Ticket</button>
+        </form>
+    
+        <div id="ticket-details"></div>
+    </section>
+    
+
+    
+    <!-- --------------------------------SERVICES----------------------------- -->
+    <section class="services-section">
+        <h1 style="color:pink; margin-bottom: 10%;">Our Services</h1>
+        <p style="color: white;">We offer a range of services to make your journey comfortable and convenient.</p>
+        <div class="services-container">
+            <div class="service-card">
+                <h2>Bus Ticket Booking</h2>
+                <p>Book your bus tickets online and enjoy a hassle-free journey.</p>
+            </div>
+            <div class="service-card">
+                <h2>Seat Selection</h2>
+                <p>Choose your preferred seat and enjoy a comfortable journey.</p>
+            </div>
+            <div class="service-card">
+                <h2>Cancel/Refund</h2>
+                <p>Easily cancel or refund your ticket online.</p>
+            </div>
+            <div class="service-card">
+                <h2>Customer Support</h2>
+                <p>Get assistance from our customer support team 24/7.</p>
+            </div>
+        </div>
+    </section>
+
+  
+</body>
+</html>

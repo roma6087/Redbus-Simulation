@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+
+<div style="
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+">
+
+    <h1 style="
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    ">Signup</h1>
+
+    <form action="{% url 'signup' %}" method="post"> 
+        {% csrf_token %}
+        <div style="margin-bottom: 15px;">
+            <label style="
+                display: block;
+                font-size: 16px;
+                color: #555;
+                margin-bottom: 5px;
+            ">Username:</label>
+            <input type="text" placeholder="Enter Username" name="username" style="
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+                box-sizing: border-box;
+            " required>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="
+                display: block;
+                font-size: 16px;
+                color: #555;
+                margin-bottom: 5px;
+            ">First Name:</label>
+            <input type="text" placeholder="Enter First Name" name="firstname" style="
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+                box-sizing: border-box;
+            " required>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="
+                display: block;
+                font-size: 16px;
+                color: #555;
+                margin-bottom: 5px;
+            ">Last Name:</label>
+            <input type="text" placeholder="Enter Last Name" name="lastname" style="
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+                box-sizing: border-box;
+            " required>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="
+                display: block;
+                font-size: 16px;
+                color: #555;
+                margin-bottom: 5px;
+            ">Email:</label>
+            <input type="email" placeholder="Enter Email" name="email" style="
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+                box-sizing: border-box;
+            " required>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="
+                display: block;
+                font-size: 16px;
+                color: #555;
+                margin-bottom: 5px;
+            ">Password:</label>
+            <input type="password" placeholder="Enter Password" name="password" style="
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+                box-sizing: border-box;
+            " required>
+        </div>
+
+        <button type="submit" style="
+            width: 100%;
+            padding: 12px;
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        ">Signup</button>
+    </form>
+
+    <p style="
+        text-align: center;
+        margin-top: 15px;
+        color: #555;
+    ">Already have an account? 
+        <a href="signin.html" style="
+            color: #ff4d4d;
+            text-decoration: none;
+        ">Sign In</a>
+    </p>
+</div>
+
+</body>
+</html>
